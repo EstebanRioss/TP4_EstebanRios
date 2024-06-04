@@ -17,10 +17,10 @@ public class CarreraController {
 	@Autowired
 	Carrera nuevaCarrera = new Carrera();
 	
-	@GetMapping("formularioCarrera")
+	@GetMapping("/formularioCarrera")
 	public ModelAndView getFormCarrera() {
 		ModelAndView modelView = new ModelAndView("/carrera/formCarrera");
-		modelView.addObject("nuevaCarrera",new Carrera());
+		modelView.addObject("nuevaCarrera",nuevaCarrera);
 		
 		return modelView;
 	}

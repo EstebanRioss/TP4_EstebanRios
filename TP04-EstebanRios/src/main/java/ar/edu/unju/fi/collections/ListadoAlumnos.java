@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.collections;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import ar.edu.unju.fi.model.Alumno;
@@ -15,7 +16,7 @@ public class ListadoAlumnos {
 	
 	public static Alumno buscarAlumnoPorCodigo(String codigo){
 		for(Alumno c : Alumnos) {
-			if(c.getDni().equals(codigo)){
+			if(c.getLU().equals(codigo)){
 				return c;
 			}
 		}
@@ -28,16 +29,23 @@ public class ListadoAlumnos {
 	
 	public static void modificarAlumno(Alumno AlumnoModificada) {
 		for(int i = 0 ; i < Alumnos.size() ; i++) {
-			Alumno Alumno = Alumnos.get(i);
-			if(Alumno.getDni().equals(AlumnoModificada.getDni())) {
-				Alumnos.set(i, Alumno);
+			Alumno alumno = Alumnos.get(i);
+			if(alumno.getLU().equals(AlumnoModificada.getLU())) {
+				Alumnos.set(i,AlumnoModificada);
 				break;
 			}
 		}
 	}
 	
 	public static void eliminarAlumno(String codigo) {
-		Alumnos.removeIf(Alumno -> Alumno.getDni().equals(codigo));
+		Iterator<Alumno> iterator = Alumnos.iterator();
+	    while (iterator.hasNext()) {
+	        Alumno c = iterator.next();
+	        if (c.getLU().equals(codigo)) {
+	            iterator.remove();
+	            break;
+	        }
+	    }
 	}
 	
 }

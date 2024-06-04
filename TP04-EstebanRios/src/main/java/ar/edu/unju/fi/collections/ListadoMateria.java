@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.collections;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import ar.edu.unju.fi.model.Materia;
@@ -29,13 +30,20 @@ public static List<Materia> Materias = new ArrayList<Materia>();
 		for(int i = 0 ; i < Materias.size() ; i++) {
 			Materia Materia = Materias.get(i);
 			if(Materia.getCodigo().equals(MateriaModificada.getCodigo())) {
-				Materias.set(i, Materia);
+				Materias.set(i, MateriaModificada);
 				break;
 			}
 		}
 	}
 	
 	public static void eliminarMateria(String codigo) {
-		Materias.removeIf(Materia -> Materia.getCodigo().equals(codigo));
+		Iterator<Materia> iterator = Materias.iterator();
+	    while (iterator.hasNext()) {
+	        Materia c = iterator.next();
+	        if (c.getCodigo().equals(codigo)) {
+	            iterator.remove();
+	            break;
+	        }
+	    }
 	}
 }
